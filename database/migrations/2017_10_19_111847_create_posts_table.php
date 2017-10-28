@@ -18,7 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('imgPost');
             $table->text('content');
-            $table->time('timePost');
+            $table->dateTime('timePost');
+            $table->string('slug')->default('home.html');
             $table->string('author');
             $table->timestamps();
         });

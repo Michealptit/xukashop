@@ -17,14 +17,16 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->integer('idProducer');
             $table->integer('idCatalog');
-            $table->integer('idQuality');
-            $table->integer('idSex');
+            $table->string('idQuality'); // F1, SuperFake, Replica
+            $table->string('idSex');  // Male, Female 
+            $table->string('name');
             $table->float('price');
-            $table->integer('slCon');
-            $table->integer('slBan');
-            $table->string('status');
+            $table->integer('slCon')->default(0);
+            $table->integer('slBan')->default(0);
+            $table->string('status')->default('show');  // show -- hide
             $table->text('detail');
             $table->string('imgProduct');
+            $table->string('slug')->default('home.html');
             $table->timestamps();
         });
     }

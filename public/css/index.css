@@ -1,0 +1,149 @@
+/*============ PHẦN MENU BAR ==================== */
+#menuBar{
+	width: 100%;
+	position: fixed; /*Cho menu cố định 1 vị trí với top và left*/
+   top: 0; /*Nằm trên cùng*/
+   left: 0; /*Nằm sát bên trái*/
+   z-index: 100000; /*Hiển thị lớp trên cùng*/
+}
+.searchBar input{
+height: 26px;
+width: 100%;
+border: 1px #2466a2 solid;
+border-radius: 4px;
+margin-left: 10px;
+padding-left: 5px;
+padding-right: 25px;
+outline: none;
+}
+.searchBar button {
+    background-color: #e9ebee;
+    background-image: none;
+    border: 0;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    display: block;
+    height: 24px;
+    padding: 0 16px 0 16px;
+    width: 46px;
+    position: absolute;
+    top: 1px;
+    right: -9px;
+    color: #ababab;
+    font-size: 11px;
+    outline: none;
+}
+.barLogin{
+padding: 8px 3px 10px 3px;
+color: white;
+font-weight: bold;
+font-size: 12px;
+position: relative;
+top: 2px;
+padding: 0 5px;
+}
+.barLogin a {
+    color: white;
+}
+a, a:hover {
+    text-decoration: none;
+}
+/* tạo hiệu ứng của ảnh login và coin */
+.barLogin img
+{
+     border: 0px solid #ddd;
+     border-radius: 4px;
+     padding: 1px;
+}
+.barLogin img:hover
+{
+     box-shadow: 5px 5px 5px white;
+}
+
+/*============ HẾT PHẦN MENU BAR ==================== */
+/*============ PHẦN SLIDE RIGHT==================== */
+.rightPanel {
+    background-color: white;
+    height: 90px;
+    width: 100%;
+    border: 1px #dfe0e4 solid;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4;
+    }
+.panelHeader {
+}
+.panelHeader h4 {
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    color: #90949c;
+    padding: 5px 0 6px;
+    margin: 5px 0 0 6px;
+    font-weight: bold;
+    text-align: left;
+}
+.panelContent {
+    margin: 5px;
+    text-align: left;
+}
+.panelContent ul{
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+}
+.rightAds1{
+    background-color: white;
+    height: 30px;
+    width: 100%;
+    border: 1px #dfe0e4 solid;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4;
+}
+
+.rightAds{
+	background-color: white;
+    height: 200px;
+    width: 100%;
+    border: 1px #dfe0e4 solid;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4;
+}
+
+.contentN{
+	background-color: white;
+    width: 100%;
+    border: 1px #dfe0e4 solid;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4;
+}
+#rightSpace{
+	height: 5px;
+}
+.rightAds1 span:hover
+{
+    box-shadow: 5px 5px 5px grey;
+}
+/*============ PHẦN SLIDE LEFT==================== */
+/* phan menu left */
+.menuLeft{
+    margin: 0px;
+    padding: 0px;
+}
+.menuLeft ul{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+.menuLeft ul li{
+    text-align: left;
+}
+.menuLeft ul li a{
+    display: block;
+    color: #000;
+    text-decoration: none;
+    padding: 0px;
+}
+.menuLeft li a:hover {
+    background-color: #FFFFFF;
+    color: black;
+}

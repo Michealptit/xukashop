@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('password');
-            $table->string('role')->default('member');
+            $table->string('role')->default('customer'); // customer-ctv-admin- 
             $table->string('phone')->unique();
             $table->date('birthday')->nullable();
             $table->string('sex')->nullable();
@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->integer('coin')->default(0);
             $table->text('img_avatar')->nullable();
             $table->string('level')->default(1);
-            $table->string('actived')->default('true');
+            $table->string('actived')->default('true'); // true- false
             $table->string('code')->nullable(); // ma xac nhan
             // 
             $table->text('hobby')->nullable();

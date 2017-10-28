@@ -15,8 +15,8 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('timeInput');
-            $table->float('priceProduct');
+            $table->date('timeInput');  //
+            $table->float('priceProduct'); //
             $table->float('priceShip');
             $table->float('total');         
             $table->timestamps();
