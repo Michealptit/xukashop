@@ -52,11 +52,34 @@ public static function searchPrice($request){
 
 
 /////============== search 
-
 public static function searchHome($request){
 	$key = $request['key'];
 	$name = DB::table()->where('name', 'like', "%".$key."%")->get();
 	return $name;
 }
+	public static function fgetProducts(){
+		$products = DB::table('products')->leftJoin('producers', 'products.idProducer', '=','producers.id')->leftJoin('catalogs', 'products.idCatalog', '=','catalogs.id')->where('status','=', 'show')->leftJoin('qualities', 'products.idQuality', '=', 'qualities.id')->leftJoin('sexes', 'products.idSex', '=', 'sexes.id')->where('status','=', 'show')->select('products.id AS id', 'producers.name AS producers_name', 'catalogs.name AS catalogs_name', 'products.name AS name', 'qualities.code as qualities_code', 'sexes.code AS sexes_code', 'products.price AS price', 'products.detail AS detail', 'products.imgProduct AS imgProduct')->paginate(2);
+	return $products;
+	}
+	// GET 5 PRODUCT
+	public static function fgetRamdomProduct(){
+		$products = DB::table('products')->leftJoin('producers', 'products.idProducer', '=','producers.id')->leftJoin('catalogs', 'products.idCatalog', '=','catalogs.id')->where('status','=', 'show')->leftJoin('qualities', 'products.idQuality', '=', 'qualities.id')->leftJoin('sexes', 'products.idSex', '=', 'sexes.id')->where('status','=', 'show')->inRandomOrder()->take(6)->get(array('products.id AS id', 'producers.name AS producers_name', 'catalogs.name AS catalogs_name', 'products.name AS name', 'qualities.code as qualities_code', 'sexes.code AS sexes_code', 'products.price AS price', 'products.detail AS detail', 'products.imgProduct AS imgProduct'));
+		return $products;
 
+	}
+	public static function fgetShopfull(){
+		$products = DB::table('products')->leftJoin('producers', 'products.idProducer', '=','producers.id')->leftJoin('catalogs', 'products.idCatalog', '=','catalogs.id')->where('status','=', 'show')->leftJoin('qualities', 'products.idQuality', '=', 'qualities.id')->leftJoin('sexes', 'products.idSex', '=', 'sexes.id')->where('status','=', 'show')->select('products.id AS id', 'producers.name AS producers_name', 'catalogs.name AS catalogs_name', 'products.name AS name', 'qualities.code as qualities_code', 'sexes.code AS sexes_code', 'products.price AS price', 'products.detail AS detail', 'products.imgProduct AS imgProduct')->paginate(10);
+	return $products;
+	}
+	// hien thi gia cho ctv
+	public static function fgetPriceAgent(){
+		$products = DB::table('products')->leftJoin('producers', 'products.idProducer', '=','producers.id')->leftJoin('catalogs', 'products.idCatalog', '=','catalogs.id')->where('status','=', 'show')->leftJoin('qualities', 'products.idQuality', '=', 'qualities.id')->leftJoin('sexes', 'products.idSex', '=', 'sexes.id')->where('status','=', 'show')->select('products.id AS id', 'producers.name AS producers_name', 'catalogs.name AS catalogs_name', 'products.name AS name', 'qualities.code as qualities_code', 'sexes.code AS sexes_code', 'products.price AS price', 'products.detail AS detail', 'products.imgProduct AS imgProduct')->paginate(10);
+		return $products;
+	}
+	public static function getProTest(){
+		$products = DB::table('products')->get();
+		return $products;
+	}
+	
+////////==================== PHIA NGUOI DUNG 
 }

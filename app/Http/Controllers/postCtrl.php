@@ -46,8 +46,8 @@ class postCtrl extends Controller
          $carbon = new Carbon();
         $timePost =$carbon->format('Y-m-d H:i:s');// date("Y-m-d h:i");//date("Y-m-d h:i:s a", time());
        // dd($timePost);
-        $slug = Tienich::convertTiengViet($title)."html";
-
+        $slug = Tienich::convertTiengViet($title).".html";
+       // dd($slug);
         $imgPost = $request->file('imgPost')->getClientOriginalName(); 
         $imgPost = Tienich::convertTiengViet($imgPost);
         $current = Carbon::now();

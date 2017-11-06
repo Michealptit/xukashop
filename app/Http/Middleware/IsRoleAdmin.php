@@ -18,7 +18,7 @@ class IsRoleAdmin
         {
          
             if(!Auth::check() or $request->user()->role!='admin') {
-                return redirect('unauthorized');      // thường ta sẽ chuyển hướng tới trang login 
+                return redirect()->route('login');      // thường ta sẽ chuyển hướng tới trang login 
             }
             return $next($request);          // chấp nhận request 
         }

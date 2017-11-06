@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Quản lý SHOP ONLINE</title>
+<title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{asset('public/backend/css/icon-font.min.css')}}" type='text/css' />
 <!-- //lined-icons -->
 <!--animate-->
-<link href="{{asset('public/backend/css/animate.css')}}}" rel="stylesheet" type="text/css" media="all">
+<link href="{{asset('public/backend/css/animate.css')}}" rel="stylesheet" type="text/css" media="all">
 <script src="{{asset('public/backend/js/wow.min.js')}}"></script>
     <script>
          new WOW().init();
@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <ul class="sub-menu-list">
                                     <li><a href="grids.html">Nhân viên</a> </li>
                                     <li><a href="">Shipper</a></li>
-                                    <li><a href="widgets.html">Cộng tác viên</a></li>
+                                    <li><a href="{{route('admin.ctvs.index')}}">Cộng tác viên</a></li>
                                     <li><a href="{{route('admin.customers.index')}}">Khách hàng</a></li>
                                 </ul>
                         </li>

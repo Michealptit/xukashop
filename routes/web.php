@@ -1,18 +1,17 @@
 <?php
+
 // get param from url
 
-Route::get('/', function () {
-    return view('fontend.index');
-});
+Route::get('','fPostCtrl@index')->name('begin');//'')->name('begin');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', function(){
-	return view('backend.index');
-});
-///=============
-Route::group(['prefix'=>'admin'], function(){
+//Route::get('/home', 'HomeController@index')->name('home');
+///============= PHAN ADMIN --- SU DUNG QUYEN ADMIN
+Route::group(['prefix'=>'admin', 'middleware'=>'isroleadmin'], function(){
+    Route::get('', function(){
+        return view('backend.index');
+    });
     Route::group(['prefix'=>'customers'], function(){
         Route::get('index', 'CustomerCtrl@index')->name('admin.customers.index');
         Route::post('search', 'CustomerCtrl@searchCustomer')->name('admin.customers.search');
@@ -20,6 +19,14 @@ Route::group(['prefix'=>'admin'], function(){
         Route::post('store', 'CustomerCtrl@store')->name('admin.customers.store');
         Route::get('show/{id}', 'CustomerCtrl@show')->name('admin.customers.show');
         Route::get('destroy/{id}', 'CustomerCtrl@destroy')->name('admin.customers.destroy');
+    });
+    Route::group(['prefix'=>'ctvs'], function(){
+        Route::get('index', 'ctvCtrl@index')->name('admin.ctvs.index');
+        Route::post('seach', 'ctvCtrl@searchCtv')->name('admin.ctvs.search');
+        Route::get('create', 'ctvCtrl@create')->name('admin.ctvs.create');
+        Route::post('store', 'ctvCtrl@store')->name('admin.ctvs.store');
+        Route::get('show/{id}', 'ctvCtrl@show')->name('admin.ctvs.show');
+        Route::get('destroy/{id}', 'ctvCtrl@destroy')->name('admin.ctvs.destroy');
     });
     Route::group(['prefix'=>'producers'], function(){
         Route::get('index', 'ProducerCtrl@index')->name('admin.producers.index');
@@ -79,6 +86,9 @@ Route::group(['prefix'=>'admin'], function(){
         Route::get('clickshow/{id}', 'ProductCtrl@clickShow');
         Route::get('clickhide/{id}', 'ProductCtrl@clickHide');
     });
+    Route::group(['prefix'=>''], function(){
+        
+    });
     Route::group(['prefix'=>'cskd'], function(){
         Route::get('cskd', 'pricetableCtrl@index')->name('admin.cskd.index');
         Route::get('edit-price/{id}', 'pricetableCtrl@editprice');
@@ -103,6 +113,53 @@ Route::group(['prefix'=>'admin'], function(){
         Route::post('update', 'inventoryCtrl@update')->name('admin.inventory.update');
     });
 });
+//==== PHIA NGUOI DUNG === PHAN QUYEN TRUC TIEP 
+
 Route::group(['prefix'=>'shop'], function(){
-    Route::post('search', 'SearchCtrl@index');
+            Route::group(['prefix'=>'products'], function(){
+                // hien thi dang FB 
+                Route::get('index', 'ProductCtrl@fIndex')->name('shop.products.index');
+                // hien thi dang luoi 
+                Route::get('full', 'ProductCtrl@fshopfull')->name('shop.products.products');
+            });
+            Route::group(['prefix'=>'priceagent'], function(){
+                Route::get('index', 'ProductCtrl@fPriceAgent')->name('shop.priceagent.index');
+            });
+            Route::group(['prefix'=>'member'], function(){
+                Route::get('infor/{id}', 'fMemberCtrl@index')->name('shop.member.infor');
+                Route::get('infor/avatar/{id}', 'fMemberCtrl@fupAvatar');
+                Route::post('infor/avatar', 'fMemberCtrl@fupLoadAvatar')->name('shop.member.infor.avatar');
+                Route::get('edit/{id}', 'fMemberCtrl@edit')->name('shop.member.edit');
+                Route::post('update', 'fMemberCtrl@update')->name('shop.member.update');
+            });
+            Route::group(['prefix'=>'mailbox'], function(){
+                Route::get('index', 'fMailBox@index')->name('shop.mailbox.index');
+                Route::get('create', 'fMailBox@create')->name('shop.mailbox.create');
+                Route::get('store', 'fMailBox@store')->name('shop.mailbox.store');
+            });
+            Route::group(['prefix'=>'post'], function(){
+                Route::get('index', 'fPostCtrl@index')->name('shop.post.index');
+                Route::get('show/{id}', 'fPostCtrl@show')->name('shop.post.show');
+                Route::get('create', 'fPostCtrl@create')->name('shop.post.create');
+                Route::post('store', 'fPostCtrl@store')->name('shop.post.store');
+                Route::get('destroy/{id}', 'fPostCtrl@destroy')->name('shop.post.destroy');
+
+            });
+            Route::group(['prefix'=>'coin'], function(){
+                Route::get('index/{id}', 'fCoinCtrl@index')->name('shop.coin.index');
+            });
+            Route::group(['prefix'=>'more'], function(){
+                Route::get('infor', function(){
+                    return view('fontend.more.infor');
+                })->name('shop.more.infor');
+                Route::get('scurity', function(){
+                    return view('fontend.more.scurity');
+                })->name('shop.more.scurity');
+                Route::get('rule', function(){
+                    return view('fontend.more.rule-sale');
+                })->name('shop.more.rule');
+                Route::get('guide', function(){
+                    return view('fontend.more.guide');
+                })->name('shop.more.guide');
+            });
 });

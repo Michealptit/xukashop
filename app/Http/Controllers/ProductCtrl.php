@@ -14,7 +14,7 @@ use App\Tienich;
 
 use Carbon\Carbon;
 
-
+use App\Post;
 use App\Quality;
 use App\Sex;
 class ProductCtrl extends Controller
@@ -37,7 +37,7 @@ class ProductCtrl extends Controller
     public function index()
     {
         //
-
+        
         $products = Product::getProductShow();
         //dd($products);
         return view('backend.products.index')->with('products', $products);
@@ -143,5 +143,24 @@ class ProductCtrl extends Controller
     public function destroy($id)
     {
         //
+    }
+    // hien thi san pham dang fb 
+    public function fIndex(){
+        $productsramdom = Product::fgetRamdomProduct();
+        $postsramdom = Post::fgetRamdomPost();
+        $products = Product::fgetProducts();
+      // dd($products);
+        return view('fontend.index')->with('products', $products)->with('productsramdom', $productsramdom)->with('postsramdom', $postsramdom);
+    }
+    // hien thi gia cho ctv
+    public function fPriceAgent(){
+        $products = Product::fgetPriceAgent();
+        return view('fontend.product.priceAgent')->with('products', $products);
+    }
+    // hien thi san pham dang luoi co phan trang
+    public function fshopfull(){
+        $products = Product::fgetShopfull();
+        return view('fontend.product.shopfull')->with('products', $products);
+        
     }
 }

@@ -23,6 +23,7 @@
 						<td width="20%">Nhà sản xuất: </td>
 						<td width="80%">
 							<select name="idProducer" id="producers" style="width: 100%;">
+								<option value="">--Chọn nhà sản xuất--</option>
 								@foreach($producers as $row)
 								<option value="{{$row->id}}">{{$row->name}}</option>
 								@endforeach
@@ -33,6 +34,7 @@
 						<td width="20%">Loại sản phẩm: </td>
 						<td width="80%">
 							<select name="idCatalog" id="idCatalogs" style="width: 100%;">
+
 							</select>
 						</td>
 					</tr>
@@ -88,11 +90,9 @@
 $(document).ready(function(){
  $('#producers').change(function(){
  	var idProducers = $(this).val();
-	//alert(idProducers);
-	$.get("http://localhost/xukashop/admin/products/ajax-catalog/"+idProducers, function(data){
-				// lấy đữ liệu từ đường dẫn --> trả về trong data . 
-					//alert(data);
-					$("#idCatalogs").html(data);   // trả về data cho thẻ id = Loaitin
+	$.get("http://localhost/bingbow/admin/products/ajax-catalog/"+idProducers, function(data){
+		//alert("idProducers");
+		$("#idCatalogs").html(data);
 	});
 
  });

@@ -5,7 +5,7 @@
 		<h3 style="text-align: center;">SẢN PHẨM</h3>	
 	</div>
 	<div class="row" style="margin-bottom: 20px;">
-	 <form action="{{route('admin.cskd.search')}}" method="POST">
+	 <form action="" method="POST">
 	 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	 	<div class="col-md-8">
 		<input type="text" name="key" placeholder="nhập tên sản phẩm" style="width: 80%;">
@@ -44,7 +44,7 @@
 					<td>{{number_format($row->price, 2, '.', ',')}}</td>
 					<td>{{number_format($row->price+50000, 2, '.', ',')}}</td>
 					<td>{{number_format($row->price+120000, 2, '.', ',')}}</td>
-					<td style="padding: 0px!important;"><img src="{{asset('public/img_product_main')}}/{{$row->imgProduct}}" alt="" width="200px" width="200px"></td>
+					<td style="padding: 0px!important;"><img src="{{asset('public/img_product_main')}}/{{$row->imgProduct}}" alt="" width="50px" height="50px;"></td>
 					<td><a href="{{asset('admin/cskd/edit-price')}}/{{$row->id}}">Sửa giá</a></td>
 				</tr>
 				@endforeach

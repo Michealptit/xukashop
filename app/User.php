@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone', 'birthday', 'sex', 'email', 'address', 'img_avatar', 'level', 'actived', 'code','hobby', 'married', 'office', 'url_facebook',
+        'name', 'email', 'password','phone', 'birthday', 'money', 'sex', 'email', 'address', 'img_avatar', 'level', 'actived', 'code','hobby', 'married', 'office', 'url_facebook',
     ];
 
     /**
@@ -40,8 +40,9 @@ class User extends Authenticatable
         $phone =  $request['phone'];
         $name = $request['name'];
         $address =  $request['address'];
-        $password = Crypt::encrypt('123456');
-        $db = DB::table('users')->insertGetId(array('phone'=>$phone, 'name'=>$name, 'address'=>$address, 'password'=>$password));
+        $password = bcrypt('123456');
+        $img_avatar = "default.jpg";
+        $db = DB::table('users')->insertGetId(array('phone'=>$phone, 'name'=>$name, 'address'=>$address, 'password'=>$password, 'img_avatar'=>$img_avatar));
     }
     public static function searchCustomer($request){
         $key = $request['key'];
@@ -51,10 +52,62 @@ class User extends Authenticatable
     public static function destroyCustomerById($id){
     DB::table('users')->where('id','=',$id)->delete();
 }
-
-
-
-
+//######################## PHIA CONG TAC VIEN
+    public static function getCtvs(){
+        $ctvs = DB::table('users')->where('role', '=', 'ctv')->orderBy('name', 'asc')->get();
+        return $ctvs;
+    }
+    public static function getCtvById($id){
+        $ctvs = DB::table('users')->where('id', '=', $id)->get();
+        return $ctvs;
+    }
+    public static function searchCtv($request){
+        $key = $request['key'];
+        $ctvs = DB::table('users')->where('phone', 'like', '%'.$key.'%')->get();
+        return $ctvs;
+    }
+    public static function insertCtv($request){
+        $phone =  $request['phone'];
+        $name = $request['name'];
+        $address =  $request['address'];
+        $password = bcrypt('123456');
+        $role = "ctv";
+        $img_avatar = "default.jpg";
+        $db = DB::table('users')->insertGetId(array('phone'=>$phone, 'name'=>$name, 'address'=>$address, 'password'=>$password, 'role'=>$role, 'img_avatar'=>$img_avatar));
+    }
+    //+++++++++++++++++++ PHÍA NGƯỜI DÙNG. 
+    public static function fgetUser($id){
+        $members = DB::table('users')->where('id', '=', $id)->get();
+        return $members;
+    }
+    public static function favatar($id, $img_avatar){
+        DB::table('users')->where('id', '=', $id)->update(array('img_avatar'=>$img_avatar));
+    }
+    public static function getOldAvatar($id){
+        $img_avatar = DB::table('users')->where('id', '=', $id)->select('img_avatar');
+        return $img_avatar;
+    }
+    public static function getUserById($id){
+        $user = DB::table('users')->where('id', '=', $id)->get();
+        return $user;
+    }
+    public static function updateUser($request){
+        $id = $request['id'];
+        $name = $request['name'];
+        $email = $request['email'];
+        $url_facebook = $request['url_facebook'];
+        $birthday = $request['birthday'];
+        $sex = $request['sex'];
+        $address = $request['address'];
+        $hobby = $request['hobby'];
+        $married = $request['married'];
+        $office = $request['office'];
+        DB::table('users')->where('id', '=', $id)->update(array('name'=>$name, 'email'=>$email, 'url_facebook'=>$url_facebook, 'birthday'=>$birthday, 'sex'=>$sex, 'address'=>$address, 'hobby'=>$hobby, 'married'=>$married, 'office'=>$office));
+    }
+    public static function getUserCoin($id){
+        $coin = DB::table('users')->where('id', '=', $id)->get(); 
+        return $coin;
+    }
 
 
 }

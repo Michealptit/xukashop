@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->dateTime('timePost');
             $table->string('slug')->default('home.html');
-            $table->string('author');
+            $table->integer('idUser')->default(1);
             $table->timestamps();
         });
     }
